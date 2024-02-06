@@ -33,6 +33,7 @@ To get started with the Medical Portal Platform, follow the installation instruc
 - Blake Pearson
 - Steven Kourani
 - Anish Singaram
+- Jared Acosta
 
 ## License 📜
 
