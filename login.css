@@ -1,5 +1,7 @@
+@import url("variables.css");
+
 body {
-  background-color: #429A9A;
+    background-color: var(--primary-color);
 }
 
 .login-page {
@@ -19,14 +21,14 @@ body {
   border-radius: 20px;
   padding: 30px;
   text-align: center;
-  background-color: #D9D9D9;
+  background-color: var(--grey-box-color);
 }
 
 .login-header {
   text-align: center;
   margin-bottom: 40px;
   margin-top: 40px;
-  color: #2C9EC2;
+  color: var(--secondary-color);
   font-size: 24px;
   font-weight: bold;
   font-family: 'Times New Roman', Times, serif;
@@ -76,12 +78,12 @@ body {
 .input-submit {
   width: 90%;
   padding: 10px;
-  background-color: #0C9AAC;
+  background-color: var(--secondary-color);
   border: none;
-  color: white;
+  color: var(--off-white);
   cursor: pointer;
 }
 
 .input-submit:hover {
-  background-color: #0371e0;
+  background-color: var(--dark-secondary-color);
 }
