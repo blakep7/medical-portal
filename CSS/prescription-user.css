@@ -18,6 +18,10 @@
   background-color: #4180b4;
 }
 
+.nav-link {
+  color: black;
+}
+
 .image{
   background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url("../assets/medical-doctor.jpg");
   height: 200vh no-repeat center center fixed;

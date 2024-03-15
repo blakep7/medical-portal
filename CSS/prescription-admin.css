@@ -14,6 +14,10 @@
     height: 2px;
 }
 
+.nav-link {
+    color: black;
+}
+
 .navbar-expand-lg {
     background-color: #4180b4;
 }
