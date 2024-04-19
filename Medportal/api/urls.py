@@ -7,8 +7,10 @@ from django.urls import re_path
 app_ame = 'api'
 urlpatterns = [
     path('drug/', views.drug_list),
+    path('drug', views.drug_list),
     path('drug/<int:id>', views.drug_detail),
     path('prescription/', views.prescription_list),
+    path('prescription', views.prescription_list),
     path('prescription/<int:id>', views.prescription_detail),
 ]
 
