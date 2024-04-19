@@ -39,3 +39,29 @@ class UserAccount(AbstractBaseUser, PermissionsMixin):
     
     def __str__(self):
         return self.email
+    
+class Drug(models.Model):
+    active_ingrediant = models.CharField(max_length=255)
+    purpose = models.CharField(max_length=255)
+    brand_name = models.CharField(max_length=255)
+    manufacturer_name = models.CharField(max_length=255)
+    generic_name = models.CharField(max_length=255)
+    product_ndc = models.CharField(max_length=255)
+    route = models.CharField(max_length=255)
+    substance_name = models.CharField(max_length=255)
+    
+    def __str__(self):
+        return self.brand_name + ' (' + self.product_ndc + ')'
+    
+class Prescription(models.Model):
+    drug = models.ForeignKey(Drug, on_delete=models.CASCADE)
+    user = models.ForeignKey(UserAccount, on_delete=models.CASCADE)
+    dosage = models.CharField(max_length=255)
+    frequency = models.CharField(max_length=255)
+    refills = models.IntegerField()
+    start_date = models.DateField()
+    end_date = models.DateField()
+    notes = models.TextField()
+    
+    def __str__(self):
+        return self.drug.brand_name + ' - ' + self.user.email
