@@ -7,6 +7,7 @@ def index_view(request):
     return render(request, 'dist/index.html')
 
 urlpatterns = [
+    path('api/', include('api.urls')),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.jwt')),
     path('admin/', admin.site.urls),
