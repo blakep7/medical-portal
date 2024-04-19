@@ -40,7 +40,7 @@ import { login } from '../actions/auth';
                                         <label htmlFor="email" className="form-label">Email</label>
                                         <div className="input-group has-validation">
                                             <span className="input-group-text">✉</span>
-                                            <input type="email" className="form-control" id="email" name="email" placeholder="Email" value={email} onChange={onChange} required />
+                                            <input type="email" className="form-control" id="email" name="email" placeholder="Email" value={email} onChange={e => onChange(e)} required />
                                             <div className="invalid-feedback">
                                                 Your email is required.
                                             </div>
@@ -48,7 +48,7 @@ import { login } from '../actions/auth';
                                     </div>
                                     <div className="mb-1">
                                         <label htmlFor="password" className="form-label">Password</label>
-                                        <input type="password" className="form-control" id="password" name="password" value={password}  onChange={onChange} required />
+                                        <input type="password" className="form-control" id="password" name="password" value={password}  onChange={e => onChange(e)} required />
                                         <div className="invalid-feedback">
                                             Your Password is required.
                                         </div>
