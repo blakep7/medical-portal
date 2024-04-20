@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 
 class UserAccountManager(BaseUserManager):
-    def create_user(self, email, first_name, last_name, password=None, user_type=None):
+    def create_user(self, email, first_name, last_name,  user_type, password=None):
         if not email:
             raise ValueError('Users must have an email address')
 
@@ -20,16 +20,12 @@ class UserAccount(AbstractBaseUser, PermissionsMixin):
     last_name = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
-    USER_TYPES = (
-        ('patient', 'Patient'),
-        ('doctor', 'Doctor'),
-    )
-    user_type = models.CharField(max_length=10, choices=USER_TYPES, blank=True, null=True)
+    user_type = models.CharField(max_length=10)
 
     objects = UserAccountManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['first_name', 'last_name']
+    REQUIRED_FIELDS = ['first_name', 'last_name', 'user_type']
 
     def get_first_name(self):
         return self.first_name
@@ -40,6 +36,9 @@ class UserAccount(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.email
     
+    def __str__(self):
+        return self.user_type
+       
 class Drug(models.Model):
     active_ingrediant = models.CharField(max_length=255)
     purpose = models.CharField(max_length=255)
