@@ -3,12 +3,13 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework import status
+from django.db.models import Q
 
 from django.http import JsonResponse
 from functools import wraps
 
-from .models import Drug, Prescription
-from .serializers import DrugSerializer, PrescriptionSerializer
+from .models import Drug, Prescription, UserAccount
+from .serializers import DrugSerializer, PrescriptionSerializer, UserAccountSerializer
 
 
 def api_key_required(view_func):
@@ -20,11 +21,10 @@ def api_key_required(view_func):
         return view_func(request, *args, **kwargs)
     return wrapper
 
-
 # Create your views here.
 # I comment out the first two views to help
 @api_view(['GET', 'POST'])              # Specify the allowed HTTP methods
-@api_key_required                       # Apply the custom decorator that is checking for the 'API-Key' header (might remove if i learn how to authenticate API requests with JWT)
+# @api_key_required                       # Apply the custom decorator that is checking for the 'API-Key' header (might remove if i learn how to authenticate API requests with JWT)
 @permission_classes([AllowAny])         # Override the default permission classes (because JWT blocks me and idk JWT)
 def drug_list(request, format=None):    # Define the view function, takes a request object and an optional format argument (user can specify the format of the response by adding .json to the end of the URL)
     
@@ -33,7 +33,7 @@ def drug_list(request, format=None):    # Define the view function, takes a requ
         
         drug_name = request.query_params.get('drug_name', None)     # Get the value of the 'drug_name' query parameter (api/drug/?drug_name=...)
         if drug_name is not None:
-            drugs = drugs.filter(brand_name__contains=drug_name)    # Filter the drugs queryset to only include drugs that have the 'drug_name' in their 'brand_name' field
+            drugs = drugs.filter(brand_name__icontains=drug_name)    # Filter the drugs queryset to only include drugs that have the 'drug_name' in their 'brand_name' field
             
         serializer = DrugSerializer(drugs, many=True)               # Serialize the drugs queryset (convert python objects to JSON)
         return Response(serializer.data)                            # Return the serialized data as a JSON response
@@ -46,7 +46,7 @@ def drug_list(request, format=None):    # Define the view function, takes a requ
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)      # Return the errors if the data is not valid with a status code of 400 (bad request), tells users what they were missing
         
 @api_view(['GET', 'PUT', 'DELETE'])
-@api_key_required
+# @api_key_required
 @permission_classes([AllowAny])
 def drug_detail(request, id, format=None):          # Define the view function, takes a request object, an id parameter, and an optional format argument (endpoint is api/drug/id/)
     try:
@@ -70,7 +70,7 @@ def drug_detail(request, id, format=None):          # Define the view function, 
         return Response(status=status.HTTP_204_NO_CONTENT)      # Return a 204 (no content) response
     
 @api_view(['GET', 'POST'])
-@api_key_required
+# @api_key_required
 @permission_classes([AllowAny])
 def prescription_list(request, format=None):
     
@@ -93,7 +93,7 @@ def prescription_list(request, format=None):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET', 'PUT', 'DELETE'])
-@api_key_required
+# @api_key_required
 @permission_classes([AllowAny])
 def prescription_detail(request, id, format=None):
     try:
@@ -115,4 +115,26 @@ def prescription_detail(request, id, format=None):
     elif request.method == 'DELETE':
         prescription.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-    
+
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def user_list(request, format=None):
+    if request.method == 'GET':
+        users = UserAccount.objects.all()
+        
+        user_name = request.query_params.get('user_name', None)
+        if user_name is not None:
+            user_name = user_name.strip('"').strip("'")
+            names = user_name.split(' ')
+            
+            first_name = names[0] if len(names) >= 1 else ''
+            last_name = names[-1] if len(names) >= 2 else ''
+            
+            if first_name and last_name:
+                users = users.filter(Q(first_name__icontains=first_name) & Q(last_name__icontains=last_name))
+            else:
+                users = users.filter(Q(first_name__icontains=first_name) | Q(last_name__icontains=first_name))
+            
+        serializer = UserAccountSerializer(users, many=True)
+        return Response(serializer.data)

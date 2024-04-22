@@ -2,7 +2,7 @@ from djoser.serializers import UserCreateSerializer
 from django.contrib.auth import get_user_model
 
 from rest_framework import serializers
-from .models import Drug, Prescription
+from .models import Drug, Prescription, UserAccount
 
 user = get_user_model()
 
@@ -10,6 +10,11 @@ class UserCreateSerializer(UserCreateSerializer):
     class Meta(UserCreateSerializer.Meta):
         model = user
         fields = ("id", "email", "password", "first_name", "last_name", "user_type")
+        
+class UserAccountSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserAccount
+        fields = ['id', 'first_name', 'last_name', 'email', 'user_type']
         
 class DrugSerializer(serializers.ModelSerializer):
     class Meta:
