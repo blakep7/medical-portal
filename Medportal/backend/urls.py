@@ -12,6 +12,8 @@ urlpatterns = [
     path('auth/', include('djoser.urls.jwt')),
     path('admin/', admin.site.urls),
     path('', index_view, name='index'),
+    path('prescriptions/', index_view, name='index'),
+    path('prescriptions', index_view, name='index'),
 ]
 
-urlpatterns += [re_path(r'^.*', TemplateView.as_view(template_name='index.html'))]
+urlpatterns += [re_path(r'^.*', TemplateView.as_view(template_name='404.html'))]

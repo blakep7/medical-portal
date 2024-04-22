@@ -8,6 +8,7 @@ import Activate from './pages/Activate';
 import ResetPassword from './pages/ResetPassword';
 import ResetPasswordConfirm from './pages/ResetPasswordConfirm';
 import MainLayout from './layouts/MainLayout';
+import PrescriptionManager from './pages/PrescriptionManager';
 
 import { Provider } from 'react-redux';
 import store from './store';
@@ -24,6 +25,7 @@ const App = () => {
             <Route exact path="/reset-password" element={<ResetPassword />} />
             <Route exact path='/password/reset/confirm/:uid/:token' element={<ResetPasswordConfirm />} />
             <Route exact path="/activate/:uid/:token" element={<Activate />} />
+            <Route exact path="/prescriptions" element={<PrescriptionManager />} />
           </Routes>
         </MainLayout>
       </BrowserRouter>

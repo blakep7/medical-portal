@@ -32,6 +32,7 @@ const NavbarComponent = ({ logout, isAuthenticated, userType }) => {
             <div className="btn-group ms-auto" role="group" aria-label="Basic mixed styles example">
                 <NavLink className="btn btn-primary rounded-pill" to='/dashboard' role="button">Dashboard</NavLink>
                 <NavLink className="btn btn-primary rounded-pill" to='/appointments' role="button">Appointments</NavLink>
+                <NavLink className="btn btn-primary rounded-pill" to='/prescriptions' role="button">Prescription Manager</NavLink>
                 <NavLink className="btn btn-primary rounded-pill" to='/' onClick={logoutHandler} role="button">Logout</NavLink>
             </div>
         </Fragment>
@@ -64,15 +65,15 @@ const NavbarComponent = ({ logout, isAuthenticated, userType }) => {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
                         <Nav.Link as={NavLink} to='/' className={activeLink === '/' ? 'text-warning' : ''}>Home</Nav.Link>
-                        <Nav.Link href="#">Page 2</Nav.Link>
+                        {/* <Nav.Link href="#">Page 2</Nav.Link>
                         <Nav.Link href="#">Page 3</Nav.Link>
                         <Nav.Link href="#">Page 4</Nav.Link>
-                        <Nav.Link href="#">Page 5</Nav.Link>
-                        <NavDropdown title="Dropdown link" id="basic-nav-dropdown">
+                        <Nav.Link href="#">Page 5</Nav.Link> */}
+                        {/* <NavDropdown title="Dropdown link" id="basic-nav-dropdown">
                             <NavDropdown.Item href="#">Action</NavDropdown.Item>
                             <NavDropdown.Item href="#">Another action</NavDropdown.Item>
                             <NavDropdown.Item href="#">Something else here</NavDropdown.Item>
-                        </NavDropdown>
+                        </NavDropdown> */}
                     </Nav>
                     {isAuthenticated ? (userType === 'doctor' ? doctorNavbar() : patientNavbar()) : guestLinks()}
                 </Navbar.Collapse>
