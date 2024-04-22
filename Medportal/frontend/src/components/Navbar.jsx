@@ -32,7 +32,7 @@ const NavbarComponent = ({ logout, isAuthenticated, userType }) => {
             <div className="btn-group ms-auto" role="group" aria-label="Basic mixed styles example">
                 <NavLink className="btn btn-primary rounded-pill" to='/dashboard' role="button">Dashboard</NavLink>
                 <NavLink className="btn btn-primary rounded-pill" to='/appointments' role="button">Appointments</NavLink>
-                <NavLink className="btn btn-primary rounded-pill" to='/prescriptions' role="button">Prescription Manager</NavLink>
+                <NavLink className="btn btn-primary rounded-pill" to='/prescriptions_manage' role="button">Prescription Manager</NavLink>
                 <NavLink className="btn btn-primary rounded-pill" to='/' onClick={logoutHandler} role="button">Logout</NavLink>
             </div>
         </Fragment>
@@ -45,6 +45,7 @@ const NavbarComponent = ({ logout, isAuthenticated, userType }) => {
             </div>
             <div className="btn-group ms-auto" role="group" aria-label="Basic mixed styles example">
                 <NavLink className="btn btn-primary rounded-pill" to='/appointments' role="button">Appointments</NavLink>
+                <NavLink className="btn btn-primary rounded-pill" to='/prescriptions' role="button">Prescriptions</NavLink>
                 <NavLink className="btn btn-primary rounded-pill" to='/' onClick={logoutHandler} role="button">Logout</NavLink>
             </div>
         </Fragment>

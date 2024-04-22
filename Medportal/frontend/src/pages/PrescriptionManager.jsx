@@ -1,14 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import axios from 'axios'; // Assuming you're using Axios for HTTP requests
 
 import DrugCard from '../components/DrugCard';
+import AssignedDrugCard from '../components/AssignedDrugCard';
+import PatientCard from '../components/PatientCard';
 
 const PrescriptionManager = ({ isAuthenticated, userType }) => {
 
     const [drugQueryInput, setDrugQueryInput] = useState("")
     const [drugs, setDrugs] = useState([])
+
+    const [patientQueryInput, setPatientQueryInput] = useState("")
+    const [patient, setPatient] = useState(null)
+
+    const [prescriptions, setPrescriptions] = useState([])
 
     const handleDrugSearch = async () => {
         try {
@@ -19,6 +26,47 @@ const PrescriptionManager = ({ isAuthenticated, userType }) => {
         }
     }
 
+    const handlePatientSearch = async () => {
+        try {
+            const response = await axios.get(`api/user/?user_name=${patientQueryInput}`);
+            setPatient(response.data.find(patient => patient.user_type === 'patient'));
+            handlePrescriptionSearch();
+        } catch (error) {
+            console.error('Error fetching search results: ', error);
+        }
+    }
+
+    useEffect(() => {
+        if (patient) {
+            handlePrescriptionSearch();
+        }
+    }, [patient]); // Run this effect whenever patient changes
+
+
+    const handlePrescriptionSearch = async () => {
+        if (patient) {
+                try {
+                    const response = await axios.get(`api/prescription/?user_id=${patient.id}`);
+
+                    const drugPromises = response.data.map(async (responseData) => {
+                        return axios.get(`api/drug/${responseData.drug}`);
+                    });
+                    
+                    const drugResponses = await Promise.all(drugPromises);
+
+                    const drugResults = drugResponses.map((response) => response.data);
+
+                    console.log(drugResponses);
+                    console.log(drugResults);
+
+                    setPrescriptions(drugResults);
+                } catch (error) {
+                    console.error(error);
+                }
+            }
+    }
+
+    
     const accessDenied = () => (
         <>
         <h1>Access Denied!</h1>
@@ -27,36 +75,35 @@ const PrescriptionManager = ({ isAuthenticated, userType }) => {
 
     const accessGranted = () => (
         <>
-        {/* <section className="p-4">
+        <section className="p-4">
             <section className="bg-dark p-2">
                 <div className="row p-2">
                     <div className="col-md-6">
                         <div className="input-group">
-                            <input type="text" value={patientQuery} onChange={handlePatientInputChange} className="form-control" placeholder="Search for Patients"/>
+                            <input 
+                                type="text"
+                                value={patientQueryInput}
+                                onChange={(e) => setPatientQueryInput(e.target.value)}
+                                className="form-control"
+                                placeholder="Search for Patients"
+                            />
                             <button className="btn btn-primary" onClick={handlePatientSearch} type="button" id="search-button">Search</button>
                         </div>
                     </div>
                 </div>
             </section>
-        </section> */}
+        </section>
 
         <section className="bg-dark text-light p-4 text-center full-height">
             <div className="container">
                 <div className="d-sm-flex">
-                    <img src="../assets/temp_profile_pic.jpg" alt="Selected User Profile Picture" className="img-thumbnail square mr-3" style={{ width: '100px', height: '150px' }}/>
-                    <div className="row align-items-end">
-                        <div className="col-sm-6 text-start justify-content-start">
-                            <h1 className="px-3">Jennifer Aniston</h1>
-                            <h5 className="px-3">Height: 5' 6"</h5>
-                            <h5 className="px-3">Weight: 120lbs - 210kg</h5>
-                            <h5 className="px-3">Physician: Dr. Michael Bradshaw</h5>
-                        </div>
-                        <div className="col-sm-6 text-start justify-content-end">
-                            <h5 className="px-3">DOB: 03/11/2003</h5>
-                            <h5 className="px-3">Address: 1420 MCCARTHY BLVD, NEW BERN NC 28562</h5>
-                            <h5 className="px-3">Phone Number: 1 (619) 555-5555</h5>
-                        </div>
-                    </div>
+                {patient && (
+                    <PatientCard 
+                        first_name={patient.first_name} 
+                        last_name={patient.last_name} 
+                        email={patient.email} 
+                    />
+                )}
                 </div>
             </div>
 
@@ -65,8 +112,8 @@ const PrescriptionManager = ({ isAuthenticated, userType }) => {
                     <h2 className="text-center">Current Prescriptions</h2>
                     <section className="bg-secondary text-dark p-2" style={{ height: '55vh', position: 'relative' }}>
                         <div style={{ position: 'absolute', top: 70, bottom: 10, left: 10, right: 10, overflowY: 'auto' }}>
-                            {drugs.map((result) => (
-                                <DrugCard brand_name={result.brand_name} purpose={result.purpose} />
+                            {prescriptions.map((result) => (
+                                <AssignedDrugCard brand_name={result.brand_name} purpose={result.purpose} drug_id={result.id}/>
                             ))}
                         </div>
                     </section>
@@ -81,14 +128,15 @@ const PrescriptionManager = ({ isAuthenticated, userType }) => {
                                     value={drugQueryInput}
                                     onChange={(e) => setDrugQueryInput(e.target.value)}
                                     className="form-control"
-                                    placeholder="Search for Prescriptions"/>
+                                    placeholder="Search for Prescriptions"
+                                />
                                 <button className="btn btn-primary" onClick={handleDrugSearch} type="button" id="search-button">Search</button>
                             </div>
                         </div>
 
                         <div style={{ position: 'absolute', top: 70, bottom: 10, left: 10, right: 10, overflowY: 'auto' }}>
                             {drugs.map((result) => (
-                                <DrugCard brand_name={result.brand_name} purpose={result.purpose} />
+                                <DrugCard brand_name={result.brand_name} purpose={result.purpose} drug_id={result.id} patient_id={patient ? patient.id : null} triggerRefresh={handlePrescriptionSearch}/>
                             ))}
                         </div>
                     </section>

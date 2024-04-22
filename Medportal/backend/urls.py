@@ -14,6 +14,8 @@ urlpatterns = [
     path('', index_view, name='index'),
     path('prescriptions/', index_view, name='index'),
     path('prescriptions', index_view, name='index'),
+    path('prescriptions_manage/', index_view, name='index'),
+    path('prescriptions_manage', index_view, name='index'),
 ]
 
 urlpatterns += [re_path(r'^.*', TemplateView.as_view(template_name='404.html'))]

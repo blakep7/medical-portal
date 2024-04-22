@@ -3,6 +3,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework import status
+from django.db.models import Q
 
 from django.http import JsonResponse
 from functools import wraps
@@ -122,9 +123,18 @@ def user_list(request, format=None):
     if request.method == 'GET':
         users = UserAccount.objects.all()
         
-        user_id = request.query_params.get('user_id', None)
-        if user_id is not None:
-            users = users.filter(id=user_id)
+        user_name = request.query_params.get('user_name', None)
+        if user_name is not None:
+            user_name = user_name.strip('"').strip("'")
+            names = user_name.split(' ')
+            
+            first_name = names[0] if len(names) >= 1 else ''
+            last_name = names[-1] if len(names) >= 2 else ''
+            
+            if first_name and last_name:
+                users = users.filter(Q(first_name__icontains=first_name) & Q(last_name__icontains=last_name))
+            else:
+                users = users.filter(Q(first_name__icontains=first_name) | Q(last_name__icontains=first_name))
             
         serializer = UserAccountSerializer(users, many=True)
         return Response(serializer.data)

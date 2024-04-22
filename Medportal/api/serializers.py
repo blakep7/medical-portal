@@ -14,7 +14,7 @@ class UserCreateSerializer(UserCreateSerializer):
 class UserAccountSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserAccount
-        fields = ['id', 'first_name', 'last_name', 'email']
+        fields = ['id', 'first_name', 'last_name', 'email', 'user_type']
         
 class DrugSerializer(serializers.ModelSerializer):
     class Meta:
