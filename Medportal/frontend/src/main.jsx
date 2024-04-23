@@ -9,3 +9,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <App />
   </React.StrictMode>,
 )
+
+// Make footer sticky to bottom of page
+document.documentElement.classList.add('h-100');
+document.body.classList.add('d-flex', 'flex-column', 'h-100'); 
+document.getElementById('root').classList.add('d-flex', 'flex-column', 'h-100'); 
