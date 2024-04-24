@@ -3,7 +3,7 @@ import React from 'react'
 const Footer = () => {
   return (
     <>  
-    <footer className="bg-dark text-light py-4">
+    <footer className="footer mt-auto bg-dark text-light py-4">
         <div className="container text-center">
           <p>&copy; 2024 Med-Portal</p>
           <ul className="list-inline">
