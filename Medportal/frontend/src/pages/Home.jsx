@@ -1,124 +1,151 @@
 import React from 'react';
 import '../components/css/Home.css';
-import backgroundImage from '../assets/background-img.jpg';
-import logo from '../assets/medical-logo.jpg';
+import backgroundImage from '../assets/cover-page3.jpg';
+import doctor1 from '../assets/doctor1.jpg';
+import doctor2 from '../assets/doctor2.jpg';
+import doctor3 from '../assets/doctor3.jpg';
+import facility from '../assets/surgeryroom.jpg';
+import teammeeting from '../assets/teammeeting.jpg';
+import physicaltherapy from '../assets/physicaltherapy.jpg';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 const Home = () => {
-  return (
-    <>
-        <header className="masthead" style={{ backgroundImage: `url(${backgroundImage})` }}>
-            <div className="container">
-            <div className="masthead-subheading">Welcome To Our Medical Portal</div>
-            <div className="masthead-heading text-uppercase">...</div>
-            <a className="btn btn-primary btn-xl text-uppercase" href="#">Tell Me More</a>
-            </div>
-        </header>
+    return (
+        <>
+            <header className="masthead" style={{ backgroundImage: `url(${backgroundImage})`, height: '400px' }}>
+                <div className="container">
+                    <div className="bg-dark rounded p-2">
+                        <h1 className="display-5 fw-bold text-light">Welcome to HealthSync</h1>
+                    </div>
+                </div>
+            </header>
 
-        <div className="container">
-            <div className="text-center">
-            <h2 className="section-heading text-uppercase">About</h2>
-            <h3 className="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
-            </div>
-            <ul className="timeline">
-            <li>
-                <div className="timeline-image"><img className="rounded-circle img-fluid" src={logo} alt="..."></img></div>
-                <div className="timeline-panel">
-                <div className="timeline-heading">
-                    <h4>2009-2011</h4>
-                    <h4 className="subheading">Our Humble Beginnings</h4>
-                </div>
-                <div className="timeline-body"><p className="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>
-                </div>
-            </li>
-            <li className="timeline-inverted">
-                <div className="timeline-image"><img className="rounded-circle img-fluid" src={logo} alt="..."></img></div>
-                <div className="timeline-panel">
-                <div className="timeline-heading">
-                    <h4>March 2011</h4>
-                    <h4 className="subheading">An Agency is Born</h4>
-                </div>
-                <div className="timeline-body"><p className="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>
-                </div>
-            </li>
-            <li>
-                <div className="timeline-image"><img className="rounded-circle img-fluid" src={logo} alt="..."></img></div>
-                <div className="timeline-panel">
-                <div className="timeline-heading">
-                    <h4>December 2015</h4>
-                    <h4 className="subheading">Transition to Full Service</h4>
-                </div>
-                <div className="timeline-body"><p className="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>
-                </div>
-            </li>
-            <li className="timeline-inverted">
-                <div className="timeline-image"><img className="rounded-circle img-fluid" src={logo} alt="..."></img></div>
-                <div className="timeline-panel">
-                <div className="timeline-heading">
-                    <h4>July 2020</h4>
-                    <h4 className="subheading">Phase Two Expansion</h4>
-                </div>
-                <div className="timeline-body"><p className="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>
-                </div>
-            </li>
-            </ul>
-        </div>
+            <h1 className="display-5 fw-bold text-black text-center mt-2 pt-2">Our Team</h1>
 
-        <section className="page-section bg-light" id="team">
-          <div className="container">
-            <div className="text-center">
-              <h2 className="section-heading text-uppercase">Our Amazing Team</h2>
-              <h3 className="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
-            </div>
-            <div className="row">
-              <div className="col-lg-3">
-                <div className="team-member">
-                  <img className="mx-auto rounded-circle" src={logo} alt="..."></img>
-                  <h4>Steven Kourani</h4>
-                  <div className="d-flex justify-content-center mt-3">
-                      <a className="btn btn-dark mb-5" href="#!" title="Link 1">Link 1</a>
-                      <a className="btn btn-dark mb-5" href="#!" title="Link 2">Link 2</a>
-                  </div>
+            <div className="container marketing mt-2 pt-2">
+                <div className="row">
+                    <div className="col-lg-4">
+                        <img
+                            src={doctor1}
+                            className="rounded-circle"
+                            width="140"
+                            height="140"
+                            alt="Profile"
+                        />
+                        <h2 className="fw-normal">Dr. Benjamin Park</h2>
+                        <h4 className="fw-normal">M.D.</h4>
+                        <h6 className="fw-normal">F.A.C.P. (Fellow of the American College of Physicians)</h6>
+                        <p>
+                            A compassionate internal medicine specialist renowned for his innovative approach to chronic disease management.
+                            With over two decades of experience, he is dedicated to providing personalized care that empowers his patients to lead healthier lives.
+                        </p>
+                        {/* <p><a className="btn btn-secondary" href="#">View details &raquo;</a></p> */}
+                    </div>
+                    <div className="col-lg-4">
+                        <img
+                            src={doctor3}
+                            className="rounded-circle"
+                            width="140"
+                            height="140"
+                            alt="Profile"
+                        />
+                        <h2 className="fw-normal">Dr. Lauren Smith</h2>
+                        <h4 className="fw-normal">M.D.</h4>
+                        <h6 className="fw-normal">F.A.A.P. (Fellow of the American Academy of Pediatrics)</h6>
+                        <p>
+                            A dedicated pediatrician with a passion for ensuring the well-being of children from infancy through adolescence.
+                            Her warm demeanor and expertise in child development make her a trusted advocate for families in her community.
+                        </p>
+                        {/* <p><a className="btn btn-secondary" href="#">View details &raquo;</a></p> */}
+                    </div>
+                    <div className="col-lg-4">
+                        <img
+                            src={doctor2}
+                            className="rounded-circle"
+                            width="140"
+                            height="140"
+                            alt="Profile"
+                        />
+                        <h2 className="fw-normal">Dr. Marcus Stone</h2>
+                        <h4 className="fw-normal">M.D.</h4>
+                        <h6 className="fw-normal">F.A.C.S. (Fellow of the American College of Surgeons)</h6>
+                        <p>
+                            A skilled surgeon known for his precision and commitment to patient safety.
+                            Specializing in minimally invasive techniques, he strives to deliver optimal surgical outcomes while minimizing discomfort and recovery time for his patients.
+                        </p>
+                        {/* <p><a className="btn btn-secondary" href="#">View details &raquo;</a></p> */}
+                    </div>
                 </div>
-              </div>
-              <div className="col-lg-3">
-                <div className="team-member">
-                  <img className="mx-auto rounded-circle" src={logo} alt="..."></img>
-                  <h4>Blake Pearson</h4>
-                  <div className="d-flex justify-content-center mt-3">
-                      <a className="btn btn-dark mb-5" href="#!" title="Link 1">Link 1</a>
-                      <a className="btn btn-dark mb-5" href="#!" title="Link 2">Link 2</a>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-3">
-                <div className="team-member">
-                  <img className="mx-auto rounded-circle" src={logo} alt="..."></img>
-                  <h4>Anishvar Singram</h4>
-                  <div className="d-flex justify-content-center mt-3">
-                      <a className="btn btn-dark mb-5" href="#!" title="Link 1">Link 1</a>
-                      <a className="btn btn-dark mb-5" href="#!" title="Link 2">Link 2</a>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-3">
-                <div className="team-member">
-                  <img className="mx-auto rounded-circle" src={logo} alt="..."></img>
-                  <h4>Jared Costa</h4>
-                  <div className="d-flex justify-content-center mt-3">
-                      <a className="btn btn-dark mb-5" href="#!" title="Link 1">Link 1</a>
-                      <a className="btn btn-dark mb-5" href="#!" title="Link 2">Link 2</a>
-                  </div>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-lg-8 mx-auto text-center"><p className="large text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p></div>
-              </div>
-            </div>
-          </div>
-      </section>
 
-    </>
-  )
+                <hr class="featurette-divider" />
+
+                <div class="row featurette">
+                    <div class="col-md-7">
+                        <h2 class="featurette-heading fw-normal lh-1">State of the Art Facilities.</h2>
+                        <p class="lead">
+                            At our facility, we pride ourselves on our investment in state-of-the-art equipment and infrastructure designed to enhance the patient experience and improve treatment outcomes.
+                            From advanced imaging technology to modern surgical suites, every aspect of our facility is meticulously designed to ensure patient comfort, safety, and optimal results.
+                        </p>
+                    </div>
+                    <div class="col-md-5">
+                        <img
+                            src={facility}
+                            className="featurette-image img-fluid mx-auto"
+                            width="500"
+                            height="500"
+                            alt="Facility"
+                        />
+                    </div>
+                </div>
+
+                <hr class="featurette-divider" />
+
+                <div class="row featurette">
+                    <div class="col-md-7 order-md-2">
+                        <h2 class="featurette-heading fw-normal lh-1">Expert Staff.</h2>
+                        <p class="lead">
+                            Our facility boasts a team of highly skilled and experienced medical professionals, each recognized for their expertise in their respective fields.
+                            From board-certified physicians to dedicated nurses and support staff, our team is committed to delivering the highest standard of care with compassion and precision.
+                        </p>
+                    </div>
+                    <div class="col-md-5 order-md-1">
+                        <img
+                            src={teammeeting}
+                            className="featurette-image img-fluid mx-auto"
+                            width="500"
+                            height="500"
+                            alt="Team Meeting"
+                        />
+                    </div>
+                </div>
+
+                <hr class="featurette-divider" />
+
+                <div class="row featurette">
+                    <div class="col-md-7">
+                        <h2 class="featurette-heading fw-normal lh-1">Comprehensive Care Approach.</h2>
+                        <p class="lead">
+                            We believe in a holistic approach to healthcare that goes beyond treating symptoms to address the underlying causes of illness.
+                            Our comprehensive care model integrates conventional medicine with complementary therapies, empowering patients to achieve optimal health and well-being.
+                        </p>
+                    </div>
+                    <div class="col-md-5">
+                        <img
+                            src={physicaltherapy}
+                            className="featurette-image img-fluid mx-auto"
+                            width="500"
+                            height="500"
+                            alt="Physical Therapy"
+                        />
+                    </div>
+                </div>
+
+                <hr class="featurette-divider" />
+            </div>
+
+
+        </>
+    )
 }
 
 export default Home
