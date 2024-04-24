@@ -28,7 +28,6 @@ const App = () => {
             <Route exact path="/activate/:uid/:token" element={<Activate />} />
             <Route exact path="/prescriptions_manage" element={<PrescriptionManager />} />
             <Route exact path="/prescriptions" element={<PrescriptionViewer />} />
-            <Route exact path="/MRPatient" element={<MRPatient />} />
           </Routes>
         </MainLayout>
       </BrowserRouter>

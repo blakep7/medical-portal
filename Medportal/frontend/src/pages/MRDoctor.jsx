@@ -1,8 +1,9 @@
-import React from 'react';
-import '../components/css/MRPatient.css';
-import Home from './Home';
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import axios from 'axios'; // Assuming you're using Axios for HTTP requests
+import '../components/css/MRDoctor.css';
 
-const MRPatient = () => {
+const MRDoctor = ({ isAuthenticated, userType }) => {
 
     return (
         <>

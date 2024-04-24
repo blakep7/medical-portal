@@ -31,3 +31,8 @@
 .medical-records-page-title {
     margin-top: -20px;
 }
+
+.col-2 .btn {
+    background-color: #5FBDBD;
+    color: #ffffff;
+}
