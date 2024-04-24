@@ -6,6 +6,7 @@ import { useState, useEffect, Fragment } from 'react';
 import { useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../actions/auth';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 const NavbarComponent = ({ logout, isAuthenticated, userType }) => {
     const location = useLocation();
@@ -15,70 +16,94 @@ const NavbarComponent = ({ logout, isAuthenticated, userType }) => {
         setActiveLink(location.pathname);
     }, [location]);
 
-    const guestLinks = () => (
-        <Fragment>
-            <div className="btn-group d-grid gap-2 d-md-flex justify-content-md-end" role="group" aria-label="Basic mixed styles example">
-                <Link className="btn btn-outline-dark" to="#" role="button">Book an Appointment</Link>
-            </div>
-            <div className="btn-group ms-auto" role="group" aria-label="Basic mixed styles example">
-                <NavLink className="btn btn-primary rounded-start-pill" to='/signup' role="button">Sign up</NavLink>
-                <NavLink className="btn btn-danger rounded-end-pill" to='/login' role="button">Log In</NavLink>
-            </div>
-        </Fragment>
-    );
-
-    const doctorNavbar = () => (
-        <Fragment>
-            <div className="btn-group ms-auto" role="group" aria-label="Basic mixed styles example">
-                <NavLink className="btn btn-primary rounded-pill" to='/dashboard' role="button">Dashboard</NavLink>
-                <NavLink className="btn btn-primary rounded-pill" to='/appointments' role="button">Appointments</NavLink>
-                <NavLink className="btn btn-primary rounded-pill" to='/prescriptions_manage' role="button">Prescription Manager</NavLink>
-                <NavLink className="btn btn-primary rounded-pill" to='/' onClick={logoutHandler} role="button">Logout</NavLink>
-            </div>
-        </Fragment>
-    );
-
-    const patientNavbar = () => (
-        <Fragment>
-            <div className="btn-group d-grid gap-2 d-md-flex justify-content-md-end" role="group" aria-label="Basic mixed styles example">
-                <Link className="btn btn-outline-dark" to="#" role="button">Book an Appointment</Link>
-            </div>
-            <div className="btn-group ms-auto" role="group" aria-label="Basic mixed styles example">
-                <NavLink className="btn btn-primary rounded-pill" to='/appointments' role="button">Appointments</NavLink>
-                <NavLink className="btn btn-primary rounded-pill" to='/prescriptions' role="button">Prescriptions</NavLink>
-                <NavLink className="btn btn-primary rounded-pill" to='/' onClick={logoutHandler} role="button">Logout</NavLink>
-            </div>
-        </Fragment>
-    );
-
     const logoutHandler = () => {
         logout();
     }
 
+    const guestNavbar = () => (
+        <>
+            <header data-bs-theme="light">
+                <nav className="navbar navbar-expand-md navbar-light bg-light">
+                    <div className="container-fluid">
+                        <Navbar.Brand href="#home">
+                            <img src={logo} alt="Logo" height="30" />
+                        </Navbar.Brand>
+                        <Navbar.Toggle className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                            <span className="navbar-toggler-icon"></span>
+                        </Navbar.Toggle>
+                        <Navbar.Collapse className="collapse navbar-collapse" id="navbarCollapse">
+                            <span className="fw-bolder fs-5 m-1">HealthSync Medical Portal</span>
+                            <Nav className="navbar-nav me-auto mb-2 mb-md-0">
+                                <Nav.Link className={`nav-link ${activeLink === '/' ? 'text-secondary' : 'text-black'}`} href="/">Home</Nav.Link>
+                            </Nav>
+                            <div className="d-flex btn-group">
+                                <NavLink className={"btn btn-success"} to='/signup'>Sign Up</NavLink>
+                                <NavLink className={"btn btn-primary"} to='/login'>Login</NavLink>
+                            </div>
+                        </Navbar.Collapse>
+                    </div>
+                </nav>
+            </header>
+        </>
+    );
+
+    const patientNavbar = () => (
+        <>
+            <header data-bs-theme="light">
+                <nav className="navbar navbar-expand-md navbar-light bg-light">
+                    <div className="container-fluid">
+                        <Navbar.Brand href="#home">
+                            <img src={logo} alt="Logo" height="30" />
+                        </Navbar.Brand>
+                        <Navbar.Toggle className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                            <span className="navbar-toggler-icon"></span>
+                        </Navbar.Toggle>
+                        <Navbar.Collapse className="collapse navbar-collapse" id="navbarCollapse">
+                            <span className="fw-bolder fs-5 m-1">HealthSync Medical Portal</span>
+                            <Nav className="navbar-nav me-auto mb-2 mb-md-0">
+                                <Nav.Link className={`nav-link ${activeLink === '/' ? 'text-secondary' : 'text-black'}`} href="/">Home</Nav.Link>
+                                <Nav.Link className={`nav-link ${activeLink === '/prescriptions' ? 'text-secondary' : 'text-black'}`} href="/prescriptions">Prescriptions</Nav.Link>
+                            </Nav>
+                            <div className="d-flex btn-group">
+                                <NavLink className={"btn btn-danger"} to='/' onClick={logoutHandler}>Logout</NavLink>
+                            </div>
+                        </Navbar.Collapse>
+                    </div>
+                </nav>
+            </header>
+        </>
+    );
+
+    const doctorNavbar = () => (
+        <>
+            <header data-bs-theme="light">
+                <nav className="navbar navbar-expand-md navbar-light bg-light">
+                    <div className="container-fluid">
+                        <Navbar.Brand href="#home">
+                            <img src={logo} alt="Logo" height="30" />
+                        </Navbar.Brand>
+                        <Navbar.Toggle className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                            <span className="navbar-toggler-icon"></span>
+                        </Navbar.Toggle>
+                        <Navbar.Collapse className="collapse navbar-collapse" id="navbarCollapse">
+                            <span className="fw-bolder fs-5 m-1">HealthSync Medical Portal</span>
+                            <Nav className="navbar-nav me-auto mb-2 mb-md-0">
+                                <Nav.Link className={`nav-link ${activeLink === '/' ? 'text-secondary' : 'text-black'}`} href="/">Home</Nav.Link>
+                                <Nav.Link className={`nav-link ${activeLink === '/prescriptions' ? 'text-secondary' : 'text-black'}`} href="/prescriptions_manage">Prescription Manager</Nav.Link>
+                            </Nav>
+                            <div className="d-flex btn-group">
+                                <NavLink className={"btn btn-danger"} to='/' onClick={logoutHandler}>Logout</NavLink>
+                            </div>
+                        </Navbar.Collapse>
+                    </div>
+                </nav>
+            </header>
+        </>
+    );
+
     return (
         <>
-            <Navbar expand="lg">
-                <Navbar.Brand href="#">
-                    <img src={logo} alt="Logo" height="30" />
-                    <span className="fw-bolder fs-5"> Med-Portal </span>
-                </Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="mr-auto">
-                        <Nav.Link as={NavLink} to='/' className={activeLink === '/' ? 'text-warning' : ''}>Home</Nav.Link>
-                        {/* <Nav.Link href="#">Page 2</Nav.Link>
-                        <Nav.Link href="#">Page 3</Nav.Link>
-                        <Nav.Link href="#">Page 4</Nav.Link>
-                        <Nav.Link href="#">Page 5</Nav.Link> */}
-                        {/* <NavDropdown title="Dropdown link" id="basic-nav-dropdown">
-                            <NavDropdown.Item href="#">Action</NavDropdown.Item>
-                            <NavDropdown.Item href="#">Another action</NavDropdown.Item>
-                            <NavDropdown.Item href="#">Something else here</NavDropdown.Item>
-                        </NavDropdown> */}
-                    </Nav>
-                    {isAuthenticated ? (userType === 'doctor' ? doctorNavbar() : patientNavbar()) : guestLinks()}
-                </Navbar.Collapse>
-            </Navbar>
+            {isAuthenticated ? (userType === 'doctor' ? doctorNavbar() : patientNavbar()) : guestNavbar()}
         </>
     );
 };
