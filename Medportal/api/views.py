@@ -138,3 +138,4 @@ def user_list(request, format=None):
             
         serializer = UserAccountSerializer(users, many=True)
         return Response(serializer.data)
+    
