@@ -156,7 +156,7 @@ const PrescriptionManager = ({ isAuthenticated, userType }) => {
 
     return (
         <>
-        {isAuthenticated ? (userType === 'doctor' ? accessGranted() : accessGranted()) : accessGranted()}
+        {isAuthenticated ? (userType === 'doctor' ? accessGranted() : accessDenied()) : accessDenied()}
         </>   
     );
 };
