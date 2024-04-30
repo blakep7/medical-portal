@@ -10,15 +10,11 @@ The **All-in-One Medical Portal Platform** is designed to streamline the healthc
 
 - **User-Friendly Interface:** A platform where patients can easily schedule appointments, request prescription refills, access medical records, and make online payments for treatments.
 
-- **Customizable for Different Practices:** Website administrators can tailor the site for specific types of practices (dental, family, veterinary) by enabling or disabling features.
-
 - **Access Groups:** Ensures a secure environment with access groups for healthcare providers, front desk staff, and patients.
 
 - **Comprehensive Database:** Tracks prescriptions, medical records, payments, charts, and vaccines, providing a centralized hub for healthcare information.
 
 - **Appointment Scheduler:** Simplifies appointment management for both patients and healthcare providers.
-
-- **Audit Logging:** Logs when patient information is accessed, by whom, and for what reason, ensuring accountability.
 
 - **Reminder System:** Includes a reminder system for important tasks like scheduling the next dental cleaning or getting a vaccine booster.
 
@@ -28,18 +24,19 @@ The **All-in-One Medical Portal Platform** is designed to streamline the healthc
 
 - ## Getting Started 🚀
 
-To create the docker contain run, run it and bind to localhost.
-```console
-docker build -t medportal:dev ./Medportal
-docker run -p 8000:8000 medportal:dev
-```
-Now you should be able to navigate to `http://localhost:8000` and view the website.
+- You MUST create a demo database using postgresql. Requirements are as follows
+  - Name: `medportal`
+  - Root User: `postgres`
+  - Root Password: `password123`
+  - Host: `localhost`
+  - Port: `5432`
 
-Alternatively, you can pull the docker image and run it.
-```console
-docker pull blakep7/medportal:latest
-docker run -p 8000:8000 blakep7/medportal:latest
-```
+There are a couple of methods to run our demo website.
+- (Preferred) Run in Docker container (2 methods)
+  - Pull git repository, navigate to Medportal, run `docker-compose build`, run `docker-compose up`, navigate to http://localhost:8000.
+  - Pull docker container from dockerhub (blakep7/medportal:latest). Run the container with the specifications listed in the docker compose file in this repository.
+- Run on Localhost
+  - Pull the git repo, create a python virtual environment, install python requirements found in requirements.txt, navigate to frontend folder, install node dependencies, npm run build, navigate back to the Medportal directory, run `py/python3 manage.py migrate`, run `py/python3 manage.py runserver localhost:8000`, navigate to http://localhost:8000 on internet.
 
 ## Contributors 👩‍💻👨‍💻
 

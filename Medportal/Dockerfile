@@ -17,11 +17,6 @@ ENV PATH="/venv/bin:$PATH"
 
 RUN pip install --upgrade pip && pip install -r /app/requirements.txt
 
-
-WORKDIR /app/frontend
-
-
-
 WORKDIR /app
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
