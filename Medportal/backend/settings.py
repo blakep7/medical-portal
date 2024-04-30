@@ -81,17 +81,6 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'medportal',
-        'USER': 'postgres',
-        'PASSWORD': 'password123',
-        'HOST': 'host.docker.internal'
-    }
-}
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
