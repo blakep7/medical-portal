@@ -86,7 +86,7 @@ DATABASES = {
         'NAME': 'medportal',
         'USER': 'postgres',
         'PASSWORD': 'password123',
-        'HOST': 'localhost'
+        'HOST': 'host.docker.internal'
     }
 }
 

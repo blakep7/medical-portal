@@ -1,0 +1,17 @@
+frontend/node_modules
+node_modules
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+*.pyw
+*.pyz
+*.pyzw
+*.ipynb_checkpoints
+*.sqlite3
+*.db
+*.sqlite
+*.sql
+*.log
+*.cache
+*.coverage

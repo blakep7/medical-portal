@@ -24,9 +24,22 @@ The **All-in-One Medical Portal Platform** is designed to streamline the healthc
 
 - **Payment Feature:** Secure online payment functionality for convenient treatment transactions.
 
-<!--- ## Getting Started 🚀
 
-To get started with the Medical Portal Platform, follow the installation instructions in the [docs](docs/installation.md) directory. -->
+
+- ## Getting Started 🚀
+
+To create the docker contain run, run it and bind to localhost.
+```console
+docker build -t medportal:dev ./Medportal
+docker run -p 8000:8000 medportal:dev
+```
+Now you should be able to navigate to `http://localhost:8000` and view the website.
+
+Alternatively, you can pull the docker image and run it.
+```console
+docker pull blakep7/medportal:latest
+docker run -p 8000:8000 blakep7/medportal:latest
+```
 
 ## Contributors 👩‍💻👨‍💻
 
