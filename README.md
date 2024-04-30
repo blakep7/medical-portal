@@ -22,7 +22,7 @@ The **All-in-One Medical Portal Platform** is designed to streamline the healthc
 
 
 
-- ## Getting Started 🚀
+## Getting Started 🚀
 
 - You MUST create a demo database using postgresql. Requirements are as follows
   - Name: `medportal`
