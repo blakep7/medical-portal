@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: medportal:dev
+    ports:
+      - "8000:8000"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"  # Access localhost from container
+    volumes:
+      - .:/app
+    environment:
+      - PYTHONUNBUFFERED=1
+      - DB_HOST=host.docker.internal  # PostgreSQL host running on host machine
+      - DB_PORT=5432                  # PostgreSQL port
+      - DB_NAME=medportal             # Database name
+      - DB_USER=postgres              # Database username
+      - DB_PASSWORD=password123       # Database password
