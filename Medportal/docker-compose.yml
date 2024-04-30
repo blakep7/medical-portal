@@ -18,5 +18,4 @@ services:
       - DB_PORT=5432                  # PostgreSQL port
       - DB_NAME=medportal             # Database name
       - DB_USER=postgres              # Database username
-      - DB_PASSWORD=password123      # Database password
-      - VITE_API_URL="http://127.0.0.1:8000"
+      - DB_PASSWORD=password123       # Database password

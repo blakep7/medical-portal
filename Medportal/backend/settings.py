@@ -103,7 +103,7 @@ DATABASES = {
 #     }
 # }
 
-ALLOWED_HOSTS = ['192.168.1.65', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['192.168.1.65', os.environ.get('DB_HOST', 'localhost'), '127.0.0.1', '0.0.0.0']
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'

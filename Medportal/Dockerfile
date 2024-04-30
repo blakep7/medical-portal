@@ -12,10 +12,7 @@ COPY ./frontend ./frontend
 COPY ./manage.py ./manage.py
 COPY ./requirements.txt ./requirements.txt
 
-RUN python3 -m venv /venv
 ENV PATH="/venv/bin:$PATH"
-
-RUN pip install --upgrade pip && pip install -r /app/requirements.txt
 
 WORKDIR /app
 COPY entrypoint.sh /entrypoint.sh
