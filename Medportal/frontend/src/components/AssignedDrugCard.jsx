@@ -5,7 +5,7 @@ const AssignedDrugCard = (props) => {
                 <div className="card-body">
                     <h5 className="card-title">{ props.brand_name }</h5>
                     <p>{ props.purpose }</p>
-                    <a href="#" className="btn btn-primary">Learn More</a>
+                    {/* <a href="#" className="btn btn-primary">Learn More</a> */}
                 </div>
             </div>
         </section>
