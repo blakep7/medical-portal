@@ -63,6 +63,7 @@ const NavbarComponent = ({ logout, isAuthenticated, userType }) => {
                             <Nav className="navbar-nav me-auto mb-2 mb-md-0">
                                 <Nav.Link className={`nav-link ${activeLink === '/' ? 'text-secondary' : 'text-black'}`} href="/">Home</Nav.Link>
                                 <Nav.Link className={`nav-link ${activeLink === '/prescriptions' ? 'text-secondary' : 'text-black'}`} href="/prescriptions">Prescriptions</Nav.Link>
+                                <Nav.Link className={`nav-link ${activeLink === '/medical_records_patient' ? 'text-secondary' : 'text-black'}`} href="/medical_records_patient">Medical Records</Nav.Link>
                             </Nav>
                             <div className="d-flex btn-group">
                                 <NavLink className={"btn btn-danger"} to='/' onClick={logoutHandler}>Logout</NavLink>
@@ -90,6 +91,7 @@ const NavbarComponent = ({ logout, isAuthenticated, userType }) => {
                             <Nav className="navbar-nav me-auto mb-2 mb-md-0">
                                 <Nav.Link className={`nav-link ${activeLink === '/' ? 'text-secondary' : 'text-black'}`} href="/">Home</Nav.Link>
                                 <Nav.Link className={`nav-link ${activeLink === '/prescriptions' ? 'text-secondary' : 'text-black'}`} href="/prescriptions_manage">Prescription Manager</Nav.Link>
+                                <Nav.Link className={`nav-link ${activeLink === '/medical_records_doctor' ? 'text-secondary' : 'text-black'}`} href="/medical_records_doctor">Medical Records Manager</Nav.Link>
                             </Nav>
                             <div className="d-flex btn-group">
                                 <NavLink className={"btn btn-danger"} to='/' onClick={logoutHandler}>Logout</NavLink>

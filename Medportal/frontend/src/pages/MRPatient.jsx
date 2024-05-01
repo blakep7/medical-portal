@@ -1,10 +1,23 @@
 import React from 'react';
 import '../components/css/MRPatient.css';
 import Home from './Home';
+import axios from 'axios'; // Assuming you're using Axios for HTTP requests
 
-const MRPatient = () => {
+const MRPatient = ({isAuthenticated, userType, userID, first_name, last_name, email, height, weight, DOB, phone_number, physician}) => {
 
-    return (
+    const accessDenied = () => (
+        <>
+        <h1>Access Denied!</h1>
+        </>
+    );
+
+    const loadingPage = () => (
+        <>
+        <h1>Loading...</h1>
+        </>
+    );
+
+    const accessGranted = () => (
         <>
             <div class="container-fluid">
                 <main>
@@ -27,11 +40,11 @@ const MRPatient = () => {
                                     </tr>
                                     <tr>
                                         <td class="left-table-col">Full Name</td>
-                                        <td>John Doe</td>
+                                        <td>{first_name} {last_name}</td>
                                     </tr>
                                     <tr>
                                         <td class="left-table-col">Date of Birth</td>
-                                        <td>10/25/2003</td>
+                                        <td>{DOB}</td>
                                     </tr>
                                     <tr>
                                         <td class="left-table-col">Gender</td>
@@ -47,11 +60,11 @@ const MRPatient = () => {
                                     </tr>
                                     <tr>
                                         <td class="left-table-col">Primary Phone Number</td>
-                                        <td>(123) 456-789</td>
+                                        <td>{phone_number}</td>
                                     </tr>
                                     <tr>
                                         <td class="left-table-col">Primary Email</td>
-                                        <td>johndoe@gmail.com</td>
+                                        <td>{email}</td>
                                     </tr>
                                     <tr>
                                         <td class="left-table-col">Emergency Contact Full Name</td>
@@ -125,7 +138,32 @@ const MRPatient = () => {
                 </main>
             </div>
         </>
-    )
-}
+    );
+
+    return (
+        <>
+        {isAuthenticated ? (loading ? loadingPage() : (userType === 'patient' ? accessGranted() : accessDenied())) : accessDenied()}
+        </>   
+    );
+
+};
+
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated,
+    userType: state.auth.user ? state.auth.user.user_type : null,
+    userID: state.auth.user ? state.auth.user.id : null,
+    first_name: state.auth.user ? state.auth.user.first_name : null,
+    last_name: state.auth.user ? state.auth.user.last_name : null,
+    email: state.auth.user ? state.auth.user.email : null,
+    height: state.auth.user ? state.auth.user.height_in : null,
+    weight: state.auth.user ? state.auth.user.weight_lb : null,
+    DOB: state.auth.user ? state.auth.user.DOB : null,
+    phone_number: state.auth.user ? state.auth.user.phone_number : null,
+    physician: state.auth.user ? state.auth.user.physician : null,
+    profile_picture_ref: state.auth.user ? state.auth.user.profile_picture_ref : null
+});
 
 export default MRPatient
+
+
+
