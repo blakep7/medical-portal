@@ -15,8 +15,8 @@ COPY ./requirements.txt ./requirements.txt
 ENV PATH="/venv/bin:$PATH"
 
 WORKDIR /app
-COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
-ENTRYPOINT ["/entrypoint.sh"]
+COPY ./entrypoint.sh ./entrypoint.sh
+RUN chmod +x ./entrypoint.sh
+ENTRYPOINT ["/app/entrypoint.sh"]
 
 EXPOSE 8000
