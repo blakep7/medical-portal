@@ -1,19 +1,16 @@
 import React from 'react';
-import '../components/css/MRPatient.css';
-import Home from './Home';
+import { connect } from 'react-redux';
+import { useState, useEffect } from 'react';
 import axios from 'axios'; // Assuming you're using Axios for HTTP requests
+import '../components/css/MRPatient.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import coffeead from '../assets/coffeead.jpg';
 
-const MRPatient = ({isAuthenticated, userType, userID, first_name, last_name, email, height, weight, DOB, phone_number, physician}) => {
+const MRPatient = ({isAuthenticated, userType, userID, first_name, last_name, email, DOB, phone_number, physician}) => {
 
     const accessDenied = () => (
         <>
         <h1>Access Denied!</h1>
-        </>
-    );
-
-    const loadingPage = () => (
-        <>
-        <h1>Loading...</h1>
         </>
     );
 
@@ -25,7 +22,13 @@ const MRPatient = ({isAuthenticated, userType, userID, first_name, last_name, em
                     <div class="row g-3 text-center">
 
                         <div class="col-2 ad-box mt-5">
-                            <h6>Ad Space</h6>
+                        `   <img
+                                src={coffeead}
+                                className="featurette-image img-fluid mx-auto"
+                                width="220"
+                                height="720"
+                                alt="Coffee Ad"
+                            />
                         </div>
 
                         <div class="col-8">
@@ -120,7 +123,7 @@ const MRPatient = ({isAuthenticated, userType, userID, first_name, last_name, em
                                             </tr>
                                             <tr>
                                                 <td class="left-table-col">Prescribing Doctor</td>
-                                                <td>Dr. John Hill</td>
+                                                <td>{physician}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -130,7 +133,13 @@ const MRPatient = ({isAuthenticated, userType, userID, first_name, last_name, em
                         </div>
 
                         <div class="col-2 ad-box mt-5">
-                            <h6>Ad Space</h6>
+                            <img
+                                src={coffeead}
+                                className="featurette-image img-fluid mx-auto"
+                                width="220"
+                                height="720"
+                                alt="Coffee Ad"
+                            />
                         </div>
 
                     </div>
@@ -142,7 +151,7 @@ const MRPatient = ({isAuthenticated, userType, userID, first_name, last_name, em
 
     return (
         <>
-        {isAuthenticated ? (loading ? loadingPage() : (userType === 'patient' ? accessGranted() : accessDenied())) : accessDenied()}
+        {isAuthenticated ? (userType === 'patient' ? accessGranted() : accessDenied()) : accessDenied()}
         </>   
     );
 
@@ -155,15 +164,12 @@ const mapStateToProps = state => ({
     first_name: state.auth.user ? state.auth.user.first_name : null,
     last_name: state.auth.user ? state.auth.user.last_name : null,
     email: state.auth.user ? state.auth.user.email : null,
-    height: state.auth.user ? state.auth.user.height_in : null,
-    weight: state.auth.user ? state.auth.user.weight_lb : null,
     DOB: state.auth.user ? state.auth.user.DOB : null,
     phone_number: state.auth.user ? state.auth.user.phone_number : null,
     physician: state.auth.user ? state.auth.user.physician : null,
-    profile_picture_ref: state.auth.user ? state.auth.user.profile_picture_ref : null
 });
 
-export default MRPatient
+export default connect(mapStateToProps)(MRPatient)
 
 
 

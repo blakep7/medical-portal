@@ -10,6 +10,8 @@ import ResetPasswordConfirm from './pages/ResetPasswordConfirm';
 import MainLayout from './layouts/MainLayout';
 import PrescriptionManager from './pages/PrescriptionManager';
 import PrescriptionViewer from './pages/PrescriptionViewer';
+import MRDoctor from './pages/MRDoctor';
+import MRPatient from './pages/MRPatient';
 import NotFound from './pages/NotFound';
 
 import { Provider } from 'react-redux';
