@@ -2,7 +2,7 @@ from djoser.serializers import UserCreateSerializer, UserSerializer
 from django.contrib.auth import get_user_model
 
 from rest_framework import serializers
-from .models import Drug, Prescription, UserAccount
+from .models import Drug, Prescription, UserAccount, Doctor
 
 user = get_user_model()
 
@@ -25,3 +25,8 @@ class PrescriptionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Prescription
         fields = ['id', 'drug', 'user', 'dosage', 'frequency', 'refills', 'start_date', 'end_date', 'notes']
+
+class DoctorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Doctor
+        fields = '__all__'

@@ -2,14 +2,14 @@ from django.shortcuts import render
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
-from rest_framework import status
+from rest_framework import status, generics
 from django.db.models import Q
 
 from django.http import JsonResponse
 from functools import wraps
 
-from .models import Drug, Prescription, UserAccount
-from .serializers import DrugSerializer, PrescriptionSerializer, UserAccountSerializer
+from .models import Drug, Prescription, UserAccount, Doctor
+from .serializers import DrugSerializer, PrescriptionSerializer, UserAccountSerializer, DoctorSerializer
 
 
 def api_key_required(view_func):
@@ -162,4 +162,12 @@ def user_detail(request, id, format=None):
     elif request.method == 'DELETE':
         User.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+    
+class DoctorListCreate(generics.ListCreateAPIView):
+    queryset = Doctor.objects.all()
+    serializer_class = DoctorSerializer
+
+class DoctorRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Doctor.objects.all()
+    serializer_class = DoctorSerializer
     

@@ -74,3 +74,15 @@ class Prescription(models.Model):
     
     def __str__(self):
         return self.drug.brand_name + ' - ' + self.user.email
+
+class Doctor(models.Model):
+    mednum = models.CharField(max_length=20)
+    name = models.CharField(max_length=100)
+    dob = models.DateField()
+    gender = models.CharField(max_length=10)
+    add1 = models.CharField(max_length=255)
+    add2 = models.CharField(max_length=255)
+    phone = models.CharField(max_length=20)
+    email = models.EmailField()
+    ename = models.CharField(max_length=100)
+    ephone = models.CharField(max_length=20)

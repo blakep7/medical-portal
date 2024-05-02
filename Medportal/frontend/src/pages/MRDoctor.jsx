@@ -7,6 +7,56 @@ import coffeead from '../assets/coffeead.jpg';
 
 const MRDoctor = ({isAuthenticated, userType}) => {
 
+    const [data, setData] = useState({
+        mednum: 'MRN001',
+        name: 'John Doe',
+        dob: '01/01/1990',
+        gender: 'Male',
+        add1: '123 Main St',
+        add2: 'Apt 101',
+        phone: '123-456-7890',
+        email: 'john.doe@example.com',
+        ename: 'Emergency Contact',
+        ephone: '987-654-3210',
+    });
+    
+    const [editMode, setEditMode] = useState(false);
+    const [editedData, setEditedData] = useState({ ...data });
+    
+    useEffect(() => {
+        fetchData();
+    }, []);
+    
+    const fetchData = async () => {
+        try {
+            const response = await axios.get('');
+            setData(response.data);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
+    
+    const handleEdit = () => {
+        setEditedData({ ...data });
+        setEditMode(true);
+    };
+    
+    const handleSave = async () => {
+        try {
+            await axios.put('http://127.0.0.1:8000/api/medical_records_doctor', editedData);
+            setEditMode(false);
+            fetchData();
+        } catch (error) {
+            console.error('Error saving data:', error);
+        }
+    };
+    
+    const handleChange = (field, e) => {
+        const newData = { ...editedData };
+        newData[field] = e.target.value;
+        setEditedData(newData);
+    };
+
     const accessDenied = () => (
         <>
         <h1>Access Denied!</h1>
@@ -50,15 +100,14 @@ const MRDoctor = ({isAuthenticated, userType}) => {
                             <hr class="my-4 mt-1 mb-3"></hr>
 
                             <div class="row align-items-center g-3 mb-1">
-                                <div class="col-4"></div>
-                                <div class="col-4">
+                                <div class="col-2"></div>
+                                <div class="col-8">
                                     <h5>Patient Information</h5>
                                 </div>
                                 <div class="col-2">
-                                    <button type="button" class="btn btn-primary">Edit All</button>
-                                </div>
-                                <div class="col-2">
-                                    <button type="button" class="btn btn-primary">Save All</button>
+                                    <button type="button" class="btn btn-primary" onClick={editMode ? handleSave : handleEdit}>
+                                        {editMode ? 'Save' : 'Edit'}
+                                    </button>
                                 </div>
                             </div>
 
