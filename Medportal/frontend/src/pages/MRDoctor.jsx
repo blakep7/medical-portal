@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { connect } from 'react-redux';
-import { useState, useEffect } from 'react';
-import axios from 'axios'; // Assuming you're using Axios for HTTP requests
 import '../components/css/MRDoctor.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import coffeead from '../assets/coffeead.jpg';
@@ -22,7 +21,7 @@ const MRDoctor = ({isAuthenticated, userType}) => {
                     <div class="row g-3 text-center">
 
                         <div class="col-2 ad-box mt-5">
-                        `   <img
+                            <img
                                 src={coffeead}
                                 className="featurette-image img-fluid mx-auto"
                                 width="220"
@@ -44,7 +43,7 @@ const MRDoctor = ({isAuthenticated, userType}) => {
                                     <input type="text" class="form-control" id="firstName" placeholder="John Doe" value="" required></input>
                                 </div>
                                 <div class="col-2">
-                                    <button type="button" class="btn">Search</button>
+                                    <button type="button" class="btn btn-primary">Search</button>
                                 </div>
                             </div>
 
@@ -56,10 +55,10 @@ const MRDoctor = ({isAuthenticated, userType}) => {
                                     <h5>Patient Information</h5>
                                 </div>
                                 <div class="col-2">
-                                    <button type="button" class="btn">Edit</button>
+                                    <button type="button" class="btn btn-primary">Edit All</button>
                                 </div>
                                 <div class="col-2">
-                                    <button type="button" class="btn">Save</button>
+                                    <button type="button" class="btn btn-primary">Save All</button>
                                 </div>
                             </div>
 
@@ -91,7 +90,7 @@ const MRDoctor = ({isAuthenticated, userType}) => {
                                     </tr>
                                     <tr>
                                         <td class="left-table-col">Primary Phone Number</td>
-                                        <td>(123) 456-789</td>
+                                        <td>(123) 456-7890</td>
                                     </tr>
                                     <tr>
                                         <td class="left-table-col">Primary Email</td>
@@ -113,12 +112,7 @@ const MRDoctor = ({isAuthenticated, userType}) => {
                                 <div class="col-4">
                                     <h5>Medical History</h5>
                                 </div>
-                                <div class="col-2">
-                                    <button type="button" class="btn">Edit</button>
-                                </div>
-                                <div class="col-2">
-                                    <button type="button" class="btn">Save</button>
-                                </div>
+                                <div class="col-4"></div>
                             </div>
 
                             <table class="table table-bordered">
@@ -147,12 +141,7 @@ const MRDoctor = ({isAuthenticated, userType}) => {
                                 <div class="col-4">
                                     <h5>Current Medications</h5>
                                 </div>
-                                <div class="col-2">
-                                    <button type="button" class="btn">Edit</button>
-                                </div>
-                                <div class="col-2">
-                                    <button type="button" class="btn">Save</button>
-                                </div>
+                                <div class="col-4"></div>
                             </div>
 
                             <ol>
