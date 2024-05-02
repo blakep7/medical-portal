@@ -36,7 +36,13 @@ const AppointmentScheduler = ({appointment, isAuthenticated, userType}) => {
         return navigate('/');
     }
 
-    return (
+    const accessDenied = () => (
+        <>
+        <h1>Access Denied!</h1>
+        </>
+    );
+
+    const accessGranted = () => (
         <>
         
             <section className="bg-light text-dark p-4 text-center full-height">
@@ -86,23 +92,77 @@ const AppointmentScheduler = ({appointment, isAuthenticated, userType}) => {
             </section>
     
         </>
+    );
+
+    return (
+        /*
+        <>
         
-        //{isAuthenticated ? (loading ? loadingPage() : (userType === 'patient' ? accessGranted() : accessDenied())) : accessDenied()}
-           
+            <section className="bg-light text-dark p-4 text-center full-height">
+
+            <div className="row align-items-end py-5">
+                <h2 className="text-center">Upcoming Appointments</h2>
+                <section className="bg-secondary text-dark p-2 text-sm-start" style={{height: '400px' }}>
+                    {appointment.map((result) => (
+                        <AppCard doctors={result.doctors} reason={result.reason} date={result.date} time={result.time}/>
+                    ))}
+                </section>
+            </div>
+
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-6 border border-3 p-4 rounded-5 bg-light">
+                        <h1 class="text-center">Schedule Appointment</h1>
+                        <div class="container mt-5"></div>
+                            <form onSubmit={onSubmit}>
+                            <select id="doctor" class="form-select mb-3" aria-label="Default select example" name="doctors" value={doctors} onChange={e => onChange(e)} required>
+                                <option selected>Select a Doctor</option>
+                                <option value="Doctor A">Doctor A</option>
+                                <option value="Doctor B">Doctor B</option>
+                            </select>
+                            <select id="reasons" class="form-select mb-3" aria-label="Default select example" name="reason" value={reason} onChange={e => onChange(e)} required>
+                                <option selected>Reason for Visit</option>
+                                <option value="Consultation">Consultation</option>
+                                <option value="Check Up">Check Up</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <div>
+                                <input type="date" class="form-control" id="datepicker" name="date" value={date} onChange={e => onChange(e)} required/>
+                                <div class="mb-3 d-grid"></div>
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-text">Additional Info</span>
+                                <textarea id="information" class="form-control" aria-label="With textarea" name="info" value={info} onChange={e => onChange(e)}></textarea>
+                            </div>
+                            <div class="mb-3 d-grid"></div>
+                            <div class="mb-3 d-grid">
+                                <button type="submit" class="btn btn-primary">Schedule Appointment</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            </section>
+    
+        </>
+        */
+        <>
+        {isAuthenticated ? (userType === 'patient' ? accessGranted() : accessDenied()) : accessDenied()}
+        </>   
     );
 };
 
-/*const mapStateToProps = state => ({
+const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated,
     userType: state.auth.user ? state.auth.user.user_type : null,
     userID: state.auth.user ? state.auth.user.id : null,
     first_name: state.auth.user ? state.auth.user.first_name : null,
     last_name: state.auth.user ? state.auth.user.last_name : null,
     email: state.auth.user ? state.auth.user.email : null
-});*/
-
+});
+/*
 const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated
-});
+});*/
 
 export default connect(mapStateToProps, {appointment})(AppointmentScheduler);
