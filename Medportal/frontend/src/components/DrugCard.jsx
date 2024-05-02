@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'; // Assuming you're using Axios for HTTP requests
 
-
-
 const DrugCard = (props) => {
 
     const handleMedicationAssignment = async () => {
@@ -34,8 +32,8 @@ const DrugCard = (props) => {
                 <div className="card-body">
                     <h5 className="card-title">{ props.brand_name }</h5>
                     <p>{ props.purpose }</p>
-                    <a href="#" className="btn btn-primary">Learn More</a>
-                    <button className="btn btn-secondary" onClick={handleMedicationAssignment} type="button" id="search-button">Assign Medication</button>
+                    {/* <a href="#" className="btn btn-primary">Learn More</a> */}
+                    <button className="btn btn-primary" onClick={handleMedicationAssignment} type="button" id="search-button">Assign Medication</button>
                 </div>
             </div>
         </section>

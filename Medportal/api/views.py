@@ -184,3 +184,28 @@ def appointment_detail(request, id, format=None):
     elif request.method == 'DELETE':                            
         appointment.delete()                                        
         return Response(status=status.HTTP_204_NO_CONTENT)          
+    
+@api_view(['GET', 'PUT', 'DELETE'])
+# @api_key_required
+@permission_classes([AllowAny])
+def user_detail(request, id, format=None):
+    try:
+        User = UserAccount.objects.get(pk=id)
+    except Prescription.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    
+    if request.method == 'GET':
+        serializer = UserAccountSerializer(User)
+        return Response(serializer.data)
+    
+    elif request.method == 'PUT':
+        serializer = UserAccountSerializer(User, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    elif request.method == 'DELETE':
+        User.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+    

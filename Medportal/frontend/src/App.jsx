@@ -11,6 +11,7 @@ import MainLayout from './layouts/MainLayout';
 import PrescriptionManager from './pages/PrescriptionManager';
 import PrescriptionViewer from './pages/PrescriptionViewer';
 import AppointmentScheduler from './pages/AppointmentScheduler';
+import NotFound from './pages/NotFound';
 
 import { Provider } from 'react-redux';
 import store from './store';
@@ -32,6 +33,7 @@ const App = () => {
             <Route exact path="/prescriptions" element={<PrescriptionViewer />} />
             <Route exact path="/scheduler" element={<AppointmentScheduler />} />
             <Route exact path="/appointments_viewer" element={<AppointmentViewer />} />
+            <Route exact path="/404" element={<NotFound />} />
           </Routes>
         </MainLayout>
       </BrowserRouter>

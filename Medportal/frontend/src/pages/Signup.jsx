@@ -12,10 +12,14 @@ import { signup } from '../actions/auth';
             re_password: '',
             first_name: '',
             last_name: '',
-            user_type: ''
+            user_type: '',
+            height_in: '',
+            weight_lb: '',
+            DOB: '',
+            phone_number: ''
         });
 
-        const { email, password, re_password, first_name, last_name, user_type} = formData;
+        const { email, password, re_password, first_name, last_name, user_type, height_in, weight_lb, DOB, phone_number} = formData;
 
         const navigate = useNavigate();
 
@@ -25,7 +29,7 @@ import { signup } from '../actions/auth';
             e.preventDefault();
             
             if (password === re_password) {
-                signup(email, first_name, last_name, password, re_password, user_type);
+                signup(email, first_name, last_name, password, re_password, user_type, height_in, weight_lb, DOB, phone_number);
                 setAccountCreated(true);
             }
         };
@@ -39,7 +43,7 @@ import { signup } from '../actions/auth';
 
         return (
           <>
-            <div class="jumbotron image" style={{ backgroundImage: `url(${backgroundImage})`, background: 'linear-gradient(rgba(255, 255, 255, 0.5))', paddingTop: '150px', paddingBottom: '10px' }}>
+            <div class="jumbotron image" style={{ backgroundImage: `url(${backgroundImage})`, background: 'linear-gradient(rgba(255, 255, 255, 0.5))', paddingTop: '30px', paddingBottom: '10px' }}>
               <div class="container mt-5"></div>
 
               <div class="container">
@@ -61,6 +65,38 @@ import { signup } from '../actions/auth';
                           <input type="lastname" class="form-control" id="last_name" name="last_name" placeholder="Doe" value={last_name} onChange={e => onChange(e)} required></input>
                           <div class="invalid-feedback">
                             Your Lastname is required.
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6 mb-3">
+                          <label for="height_in" class="form-label">Height (in)</label>
+                          <input type="height_in" class="form-control" id="height_in" name="height_in" placeholder="" value={height_in} onChange={e => onChange(e)} required></input>
+                          <div class="invalid-feedback">
+                            Your height is required.
+                          </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                          <label for="weight_lb" class="form-label">Weight (lbs)</label>
+                          <input type="weight_lb" class="form-control" id="weight_lb" name="weight_lb" placeholder="" value={weight_lb} onChange={e => onChange(e)} required></input>
+                          <div class="invalid-feedback">
+                            Your weight is required.
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6 mb-3">
+                          <label for="DOB" class="form-label">Date of Birth</label>
+                          <input type="date" class="form-control" id="DOB" name="DOB" placeholder="" value={DOB} onChange={e => onChange(e)} required></input>
+                          <div class="invalid-feedback">
+                            Your Date of Birth is required.
+                          </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                          <label for="phone_number" class="form-label">Phone Number</label>
+                          <input type="tel" class="form-control" id="phone_number" name="phone_number" placeholder="" value={phone_number} onChange={e => onChange(e)} required></input>
+                          <div class="invalid-feedback">
+                            Your phone number is required.
                           </div>
                         </div>
                       </div>

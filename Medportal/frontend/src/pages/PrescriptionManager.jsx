@@ -75,8 +75,8 @@ const PrescriptionManager = ({ isAuthenticated, userType }) => {
 
     const accessGranted = () => (
         <>
-        <section className="p-4">
-            <section className="bg-dark p-2">
+        <section className="">
+            <section className="p-2" style={{background: '#DEE4E7'}}>
                 <div className="row p-2">
                     <div className="col-md-6">
                         <div className="input-group">
@@ -94,24 +94,32 @@ const PrescriptionManager = ({ isAuthenticated, userType }) => {
             </section>
         </section>
 
-        <section className="bg-dark text-light p-4 text-center full-height">
-            <div className="container">
-                <div className="d-sm-flex">
-                {patient && (
-                    <PatientCard 
-                        first_name={patient.first_name} 
-                        last_name={patient.last_name} 
-                        email={patient.email} 
-                    />
-                )}
+        <section className="text-dark p-4 text-center full-height" style={{background: '#DEE4E7'}}>
+            <section className="p-2 rounded">
+                <div className="container" style={{minHeight: '152px'}}>
+                    <div className="d-sm-flex">
+                    {patient && (
+                        <PatientCard 
+                            first_name={patient.first_name} 
+                            last_name={patient.last_name} 
+                            email={patient.email} 
+                            height={patient.height_in}
+                            weight={patient.weight_lb}
+                            DOB={patient.DOB}
+                            phone_number={patient.phone_number}
+                            physician={patient.physician}
+                            profile_picture_ref={patient.profile_picture_ref}
+                        />
+                    )}
+                    </div>
                 </div>
-            </div>
+            </section>
 
             <div className="row align-items-end py-5">
                 <div className="col-sm-6 text-start justify-content-start py-1">
                     <h2 className="text-center">Current Prescriptions</h2>
-                    <section className="bg-secondary text-dark p-2" style={{ height: '55vh', position: 'relative' }}>
-                        <div style={{ position: 'absolute', top: 70, bottom: 10, left: 10, right: 10, overflowY: 'auto' }}>
+                    <section className="border border-2 border-dark text-dark p-2 rounded" style={{ height: '55vh', position: 'relative'}}>
+                        <div style={{ position: 'absolute', top: 20, bottom: 10, left: 10, right: 10, overflowY: 'auto' }}>
                             {prescriptions.map((result) => (
                                 <AssignedDrugCard brand_name={result.brand_name} purpose={result.purpose} drug_id={result.id}/>
                             ))}
@@ -120,7 +128,7 @@ const PrescriptionManager = ({ isAuthenticated, userType }) => {
                 </div>
                 <div className="col-sm-6 text-start justify-content-start py-1">
                     <h2 className="text-center">Prescribe New</h2>
-                    <section className="bg-secondary text-dark p-2" style={{ height: '55vh', position: 'relative' }}>
+                    <section className="border border-2 border-dark text-dark p-2 rounded" style={{ height: '55vh', position: 'relative' }}>
                         <div className="col p-2">
                             <div className="input-group">
                                 <input 
