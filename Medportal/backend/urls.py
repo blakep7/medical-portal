@@ -19,6 +19,10 @@ urlpatterns = [
     path('prescriptions', index_view, name='index'),
     path('prescriptions_manage/', index_view, name='index'),
     path('prescriptions_manage', index_view, name='index'),
+    path('medical_records_patient/' , index_view, name='index'),
+    path('medical_records_patient', index_view, name='index'),
+    path('medical_records_doctor/', index_view, name='index'),
+    path('medical_records_doctor', index_view, name='index'),
     path('404', index_view, name='index'),
     path('404/', index_view, name='index'),
 ]

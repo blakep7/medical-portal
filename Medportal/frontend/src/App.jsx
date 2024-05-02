@@ -10,6 +10,8 @@ import ResetPasswordConfirm from './pages/ResetPasswordConfirm';
 import MainLayout from './layouts/MainLayout';
 import PrescriptionManager from './pages/PrescriptionManager';
 import PrescriptionViewer from './pages/PrescriptionViewer';
+import MRDoctor from './pages/MRDoctor';
+import MRPatient from './pages/MRPatient';
 import NotFound from './pages/NotFound';
 
 import { Provider } from 'react-redux';
@@ -29,6 +31,8 @@ const App = () => {
             <Route exact path="/activate/:uid/:token" element={<Activate />} />
             <Route exact path="/prescriptions_manage" element={<PrescriptionManager />} />
             <Route exact path="/prescriptions" element={<PrescriptionViewer />} />
+            <Route exact path="/medical_records_doctor" element={<MRDoctor />} />
+            <Route exact path="/medical_records_patient" element={<MRPatient />} />
             <Route exact path="/404" element={<NotFound />} />
           </Routes>
         </MainLayout>
