@@ -64,3 +64,15 @@ class Prescription(models.Model):
     
     def __str__(self):
         return self.drug.brand_name + ' - ' + self.user.email
+    
+class Appointments(models.Model):
+    user = models.ForeignKey(UserAccount, on_delete=models.CASCADE) 
+    doctors = models.CharField()
+    date = models.CharField()
+    time = models.CharField()
+    reason = models.CharField()
+    info = models.CharField()
+
+    def __str__(self):
+        return self.date + ' ' + self.time + ' ' + self.reason
+

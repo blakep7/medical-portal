@@ -17,9 +17,9 @@ const NavbarComponent = ({ logout, isAuthenticated, userType }) => {
 
     const guestLinks = () => (
         <Fragment>
-            <div className="btn-group d-grid gap-2 d-md-flex justify-content-md-end" role="group" aria-label="Basic mixed styles example">
-                <Link className="btn btn-outline-dark" to="#" role="button">Book an Appointment</Link>
-            </div>
+            {/*<div className="btn-group d-grid gap-2 d-md-flex justify-content-md-end" role="group" aria-label="Basic mixed styles example">
+                <NavLink className="btn btn-outline-dark" to="/scheduler" role="button">Book an Appointment</NavLink>
+            </div>*/}
             <div className="btn-group ms-auto" role="group" aria-label="Basic mixed styles example">
                 <NavLink className="btn btn-primary rounded-start-pill" to='/signup' role="button">Sign up</NavLink>
                 <NavLink className="btn btn-danger rounded-end-pill" to='/login' role="button">Log In</NavLink>
@@ -41,10 +41,10 @@ const NavbarComponent = ({ logout, isAuthenticated, userType }) => {
     const patientNavbar = () => (
         <Fragment>
             <div className="btn-group d-grid gap-2 d-md-flex justify-content-md-end" role="group" aria-label="Basic mixed styles example">
-                <Link className="btn btn-outline-dark" to="#" role="button">Book an Appointment</Link>
+                <NavLink className="btn btn-outline-dark" to="/scheduler" role="button">Book an Appointment</NavLink>
             </div>
             <div className="btn-group ms-auto" role="group" aria-label="Basic mixed styles example">
-                <NavLink className="btn btn-primary rounded-pill" to='/appointments' role="button">Appointments</NavLink>
+                <NavLink className="btn btn-primary rounded-pill" to='/appointments_viewer' role="button">Appointments</NavLink>
                 <NavLink className="btn btn-primary rounded-pill" to='/prescriptions' role="button">Prescriptions</NavLink>
                 <NavLink className="btn btn-primary rounded-pill" to='/' onClick={logoutHandler} role="button">Logout</NavLink>
             </div>

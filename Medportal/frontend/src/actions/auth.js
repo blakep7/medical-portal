@@ -14,6 +14,8 @@ import {
     SIGNUP_FAIL,
     ACTIVATION_SUCCESS,
     ACTIVATION_FAIL,
+    APPOINTMENT_SUCCESS,
+    APPOINTMENT_FAIL,
     LOGOUT
 } from './types';
 
@@ -203,4 +205,26 @@ export const logout = () => dispatch => {
     dispatch({
         type: LOGOUT
     });
+}
+
+export const appointment = (doctors, date, time, reason, info) => async dispatch => {
+    const config = {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }
+
+    const body = JSON.stringify({ doctors, date, time, reason, info});
+
+    try {
+        await axios.post(`${API_URL}/auth/users/appointments`, body, config);
+
+        dispatch({
+            type: APPOINTMENT_SUCCESS
+        });
+    } catch (err) {
+        dispatch({
+            type: APPOINTMENT_FAIL
+        });
+    }
 }

@@ -8,8 +8,8 @@ from django.db.models import Q
 from django.http import JsonResponse
 from functools import wraps
 
-from .models import Drug, Prescription, UserAccount
-from .serializers import DrugSerializer, PrescriptionSerializer, UserAccountSerializer
+from .models import Drug, Prescription, UserAccount, Appointments
+from .serializers import DrugSerializer, PrescriptionSerializer, UserAccountSerializer, AppointmentSerializer
 
 
 def api_key_required(view_func):
@@ -138,3 +138,49 @@ def user_list(request, format=None):
             
         serializer = UserAccountSerializer(users, many=True)
         return Response(serializer.data)
+
+@api_view(['GET', 'POST'])
+# @api_key_required
+@permission_classes([AllowAny])
+def appointment_list(request, format=None):
+    
+    if request.method == 'GET':
+        appointments = Appointments.objects.all()
+        
+        user_id = request.query_params.get('user_id', None)
+        if user_id is not None:
+            appointments = appointments.filter(user_id=user_id)
+            
+        serializer = AppointmentSerializer(appointments, many=True)
+        return Response(serializer.data)
+    
+    if request.method == 'POST':
+        serializer = AppointmentSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET', 'PUT', 'DELETE'])
+@permission_classes([AllowAny])
+def appointment_detail(request, id, format=None):
+    try:
+        appointment = Appointments.objects.get(pk=id)          
+    except Appointments.DoesNotExist:                   
+        return Response(status=status.HTTP_404_NOT_FOUND)  
+    
+    if request.method == 'GET':   
+        serializer = AppointmentSerializer(appointment)      
+        return Response(serializer.data)       
+    
+    elif request.method == 'PUT':        
+        serializer = AppointmentSerializer(appointment, data=request.data)      
+        if serializer.is_valid():                            
+            serializer.save()                                       
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    elif request.method == 'DELETE':                            
+        appointment.delete()                                        
+        return Response(status=status.HTTP_204_NO_CONTENT)          
