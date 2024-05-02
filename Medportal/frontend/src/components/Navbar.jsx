@@ -63,6 +63,7 @@ const NavbarComponent = ({ logout, isAuthenticated, userType }) => {
                             <Nav className="navbar-nav me-auto mb-2 mb-md-0">
                                 <Nav.Link className={`nav-link ${activeLink === '/' ? 'text-secondary' : 'text-black'}`} href="/">Home</Nav.Link>
                                 <Nav.Link className={`nav-link ${activeLink === '/prescriptions' ? 'text-secondary' : 'text-black'}`} href="/prescriptions">Prescriptions</Nav.Link>
+                                <Nav.Link className={`nav-link ${activeLink === '/scheduler' ? 'text-secondary' : 'text-black'}`} href="/scheduler">Appointments</Nav.Link>
                             </Nav>
                             <div className="d-flex btn-group">
                                 <NavLink className={"btn btn-danger"} to='/' onClick={logoutHandler}>Logout</NavLink>

@@ -33,7 +33,7 @@ const AppointmentScheduler = ({appointment, isAuthenticated, userType}) => {
     
     if(appointmentCreated)
     {
-        return navigate('/appointments');
+        return navigate('/');
     }
 
     return (
@@ -63,7 +63,7 @@ const AppointmentScheduler = ({appointment, isAuthenticated, userType}) => {
                             </div>
                             <div class="input-group">
                                 <span class="input-group-text">Additional Info</span>
-                                <textarea id="information" class="form-control" aria-label="With textarea" name="info" value={info} onChange={e => onChange(e)} required></textarea>
+                                <textarea id="information" class="form-control" aria-label="With textarea" name="info" value={info} onChange={e => onChange(e)}></textarea>
                             </div>
                             <div class="mb-3 d-grid"></div>
                             <div class="mb-3 d-grid">

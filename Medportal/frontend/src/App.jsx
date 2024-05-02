@@ -11,11 +11,11 @@ import MainLayout from './layouts/MainLayout';
 import PrescriptionManager from './pages/PrescriptionManager';
 import PrescriptionViewer from './pages/PrescriptionViewer';
 import AppointmentScheduler from './pages/AppointmentScheduler';
+import AppointmentViewer from './pages/AppointmentViewer';
 import NotFound from './pages/NotFound';
 
 import { Provider } from 'react-redux';
 import store from './store';
-import AppointmentViewer from './pages/AppointmentViewer';
 
 const App = () => {
   return (

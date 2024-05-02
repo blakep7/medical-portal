@@ -10,7 +10,7 @@ const AppointmentViewer = ({ isAuthenticated, userType, userID, first_name, last
     const [appointment, setAppointment] = useState([])
 
     useEffect(() => {
-        //setLoading(true);
+        setLoading(true);
         AppointmentSearch();
     }, [userID])
 
@@ -39,6 +39,12 @@ const AppointmentViewer = ({ isAuthenticated, userType, userID, first_name, last
     const accessDenied = () => (
         <>
         <h1>Access Denied!</h1>
+        </>
+    );
+
+    const loadingPage = () => (
+        <>
+        <h1>Loading...</h1>
         </>
     );
 
