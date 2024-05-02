@@ -40,6 +40,16 @@ const AppointmentScheduler = ({appointment, isAuthenticated, userType}) => {
         <>
         
             <section className="bg-light text-dark p-4 text-center full-height">
+
+            <div className="row align-items-end py-5">
+                <h2 className="text-center">Upcoming Appointments</h2>
+                <section className="bg-secondary text-dark p-2 text-sm-start" style={{height: '400px' }}>
+                    {appointment.map((result) => (
+                        <AppCard doctors={result.doctors} reason={result.reason} date={result.date} time={result.time}/>
+                    ))}
+                </section>
+            </div>
+
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-md-6 border border-3 p-4 rounded-5 bg-light">
