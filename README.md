@@ -1,8 +1,8 @@
 # All-in-One Medical Portal Platform 🌐💉
 
-## COMPE561 - Windows Database and Web Programming Project
+## Database and Web Programming Project
 
-Welcome to our Medical Portal Platform, a comprehensive solution developed as a part of the COMPE561 (Spring 2024) course. This project aims to provide a user-friendly platform for managing medical information and services.
+Welcome to our Medical Portal Platform. This project aims to provide a user-friendly platform for managing medical information and services.
 
 ## Project Description 🏥
 
